@@ -20,7 +20,9 @@
         </ul>
 
         <div>
-            <img width="100%"
+            <img
+        class="routes-image"
+        width="100%"
         src="https://www.cm-stirso.pt/thumbs/cmsantotirso/uploads/writer_file/image/2840/Mapa_das_Linhas_1_980_2500.png"
         alt="">
         </div>
@@ -82,5 +84,9 @@ ul {
     display: inline-block;
     background-color: black;
     margin-right: 10px;
+}
+
+.routes-image {
+  max-width: 700px;
 }
 </style>
