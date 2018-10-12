@@ -1,17 +1,31 @@
 <template>
     <div class="main">
         <img width="25%" src="./assets/logo.png">
-        <search></search>
+        <search v-on:search="search"></search>
+        <routes v-bind:routesList="routes"></routes>
     </div>
 </template>
 
 <script>
 import search from './components/search';
+import routes from './components/routes';
+import { getAvailableRoutes } from './services/transport.service';
 
 export default {
     name: 'App',
     components: {
-        search
+        search,
+        routes
+    },
+    data() {
+        return {
+            routes: []
+        };
+    },
+    methods: {
+        search({ fromValue, toValue }) {
+            this.routes = getAvailableRoutes(fromValue, toValue);
+        }
     }
 };
 </script>
