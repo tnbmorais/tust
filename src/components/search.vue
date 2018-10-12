@@ -48,6 +48,10 @@ export default {
             const fromValue = this.$refs.from.value;
             const toValue = this.$refs.to.value;
 
+            if (!fromValue || !toValue) {
+                return;
+            }
+
             this.$emit('search', {
                 fromValue,
                 toValue
