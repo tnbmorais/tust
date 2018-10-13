@@ -5,7 +5,9 @@
             <li v-for="(route, index) in routesList" v-bind:key="index">
                 <span class="icon-route" v-bind:style="{'background-color': route.color}"></span>
                 {{route.name}}
-                <h5>{{route.stops.join(', ')}}</h5>
+                <h5>
+                    <span class="stops" v-for="(stop, index) in route.stops" v-bind:key="index">{{stop}}</span>
+                </h5>
             </li>
         </ul>
         <div>
@@ -44,5 +46,9 @@ ul {
 
 .routes-image {
     max-width: 700px;
+}
+
+.stops:not(:last-child)::after {
+    content: ', ';
 }
 </style>
