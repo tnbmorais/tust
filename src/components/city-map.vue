@@ -11,7 +11,7 @@
 <script>
 export default {
     name: 'city-map'
-}
+};
 </script>
 
 <style scoped>
@@ -19,5 +19,3 @@ export default {
     max-width: 700px;
 }
 </style>
-
-
