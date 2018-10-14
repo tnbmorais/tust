@@ -3,19 +3,22 @@
         <img width="25%" src="./assets/logo.png">
         <search v-on:search="search"></search>
         <routes v-bind:routesList="routes"></routes>
+        <city-map></city-map>
     </div>
 </template>
 
 <script>
 import search from './components/search';
 import routes from './components/routes';
+import cityMap from './components/city-map';
 import { getAvailableRoutes } from './services/transport.service';
 
 export default {
     name: 'App',
     components: {
         search,
-        routes
+        routes,
+        cityMap
     },
     data() {
         return {
