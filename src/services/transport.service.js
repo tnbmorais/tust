@@ -1,4 +1,6 @@
 import routes from '../mock-data/routes.json';
+import schedules from '../mock-data/schedules.json';
+import { calculateTypeOfDay } from './date-helper';
 
 function getStops() {
     const stopsList = Object.values(routes).reduce((acc, route) => acc.concat(route.stops), []);
@@ -20,14 +22,33 @@ function getAvailableStops(from) {
     return Array.from(new Set(stopsList)).sort();
 }
 
-function getAvailableRoutes(from, to) {
-    const routesList = Object.values(routes).filter(route => {
-        const routeHasBothDestinations = [from, to].every(stop => route.stops.indexOf(stop) !== -1);
+function getSchedulesForRoutes(routeFrom, direction) {
+    const typeOfDay = calculateTypeOfDay();
 
-        return routeHasBothDestinations;
-    });
+    const scheduleIndex = direction === 'begin_to_end' ? 0 : 1;
+
+    return schedules[routeFrom][typeOfDay][scheduleIndex];
+}
+
+function getAvailableRoutes(from, to) {
+    const routesList = Object.values(routes)
+        .filter(route => {
+            const routeHasBothDestinations = [from, to].every(stop => route.stops.indexOf(stop) !== -1);
+
+            return routeHasBothDestinations;
+        })
+        .map(route => {
+            const fromIndex = route.stops.findIndex(stop => stop === from);
+            const toIndex = route.stops.findIndex(stop => stop === to);
+            const direction = fromIndex < toIndex ? 'begin_to_end' : 'end_to_begin';
+
+            return {
+                ...route,
+                schedules: getSchedulesForRoutes(route.id, direction)
+            };
+        });
 
     return routesList;
 }
 
-export { getStops, getAvailableStops, getAvailableRoutes };
+export { getStops, getAvailableStops, getAvailableRoutes, getSchedulesForRoutes };

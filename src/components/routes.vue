@@ -2,12 +2,13 @@
     <div>
         <h1 v-if="routesList.length > 0">Rotas disponíveis</h1>
         <ul>
-            <li v-for="(route, index) in routesList" v-bind:key="index">
+            <li class="route" v-for="(route, routeIndex) in routesList" v-bind:key="routeIndex">
                 <span class="icon-route" v-bind:style="{'background-color': route.color}"></span>
                 {{route.name}}
                 <h5>
-                    <span class="stops" v-for="(stop, index) in route.stops" v-bind:key="index">{{stop}}</span>
+                    <span class="stops" v-for="(stop, stopIndex) in route.stops" v-bind:key="stopIndex">{{stop}}</span>
                 </h5>
+                {{route.schedules}}
             </li>
         </ul>
         <div>
@@ -30,6 +31,11 @@ export default {
 </script>
 
 <style scoped>
+.route:not(:last-child) {
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 10px;
+}
+
 ul {
     margin: 0;
     padding: 0;
