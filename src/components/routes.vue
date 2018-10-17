@@ -1,18 +1,33 @@
 <template>
-    <div>
-        <h1 v-if="routesList.length > 0">Rotas disponíveis</h1>
-        <ul>
-            <li class="route" v-for="(route, routeIndex) in routesList" v-bind:key="routeIndex">
-                <span class="icon-route" v-bind:style="{'background-color': route.color}"></span>
-                {{route.name}}
-                <h5>
-                    <span class="stops" v-for="(stop, stopIndex) in route.stops" v-bind:key="stopIndex">{{stop}}</span>
-                </h5>
-                <h5>{{route.schedules}}</h5>
-                <h5>Próximo Transporte: {{route.nextSchedule}}</h5>
-            </li>
-        </ul>
-    </div>
+    <mu-list toggle-nested>
+        <mu-list-item
+                v-for="(route, routeIndex) in routesList"
+                v-bind:key="routeIndex"
+                v-bind:open="false"
+                nested
+                button>
+            <mu-list-item-action>
+                <mu-avatar v-bind:color="route.color" size="16"></mu-avatar>
+            </mu-list-item-action>
+            <mu-list-item-title>{{route.name}} ({{route.nextSchedule}})</mu-list-item-title>
+            <mu-list-item-action>
+                <mu-icon class="toggle-icon" size="24" value="keyboard_arrow_down"></mu-icon>
+            </mu-list-item-action>
+            <mu-list-item slot="nested">
+                <mu-sub-header>Horários</mu-sub-header>
+            </mu-list-item>
+            <mu-list-item slot="nested">
+                <mu-sub-header>{{route.schedules.toString()}}</mu-sub-header>
+            </mu-list-item>
+            <mu-divider slot="nested"></mu-divider>
+            <mu-list-item slot="nested">
+                <mu-sub-header>Paragens</mu-sub-header>
+            </mu-list-item>
+            <mu-list-item slot="nested" v-for="(stop, stopIndex) in route.stops" v-bind:key="stopIndex">
+                <mu-list-item-title>{{stop}}</mu-list-item-title>
+            </mu-list-item>
+        </mu-list-item>
+    </mu-list>
 </template>
 
 <script>
