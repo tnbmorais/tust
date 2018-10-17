@@ -1,6 +1,6 @@
 import routes from '../mock-data/routes.json';
 import schedules from '../mock-data/schedules.json';
-import { calculateTypeOfDay } from './date-helper';
+import { calculateTypeOfDay, getNextSchedule } from './date-helper';
 
 function getStops() {
     const stopsList = Object.values(routes).reduce((acc, route) => acc.concat(route.stops), []);
@@ -41,14 +41,17 @@ function getAvailableRoutes(from, to) {
             const fromIndex = route.stops.findIndex(stop => stop === from);
             const toIndex = route.stops.findIndex(stop => stop === to);
             const direction = fromIndex < toIndex ? 'begin_to_end' : 'end_to_begin';
+            const schedulesList = getSchedulesForRoutes(route.id, direction);
+            const nextSchedule = getNextSchedule(schedulesList);
 
             return {
                 ...route,
-                schedules: getSchedulesForRoutes(route.id, direction)
+                schedules: schedulesList,
+                nextSchedule
             };
         });
 
     return routesList;
 }
 
-export { getStops, getAvailableStops, getAvailableRoutes, getSchedulesForRoutes };
+export { getStops, getAvailableStops, getAvailableRoutes };

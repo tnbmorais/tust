@@ -13,8 +13,19 @@ function calculateTypeOfDay() {
     );
 }
 
-function getNextSchedule() {
+function getNextSchedule(schedules) {
+    const todayDate = new Date();
+    // To simulate times
+    // todayDate.setHours(17, 0);
+    //
 
+    return schedules.find(time => {
+        const timeArr = time.split(':');
+        const referenceDate = new Date();
+        referenceDate.setHours(timeArr[0], timeArr[1], 0);
+
+        return todayDate < referenceDate;
+    }) || schedules[0];
 }
 
 export {

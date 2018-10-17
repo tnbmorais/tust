@@ -8,7 +8,8 @@
                 <h5>
                     <span class="stops" v-for="(stop, stopIndex) in route.stops" v-bind:key="stopIndex">{{stop}}</span>
                 </h5>
-                {{route.schedules}}
+                <h5>{{route.schedules}}</h5>
+                <h5>Próximo Transporte: {{route.nextSchedule}}</h5>
             </li>
         </ul>
     </div>
