@@ -1,22 +1,26 @@
 <template>
     <div>
         <div>
-            <label>De:</label>
-            <input type="search" list="routesFrom" ref="from" v-on:change="onFromSelect"/>
+            <mu-select label="De:" filterable v-model="selected.from" v-on:change="onFromSelect">
+                <mu-option
+                    v-for="(route,index) in routesFrom"
+                    v-bind:key="index"
+                    v-bind:label="route"
+                    v-bind:value="route">
+                </mu-option>
+            </mu-select>
         </div>
         <div>
-            <label>Para:</label>
-            <input type="search" list="routesTo" ref="to"/>
+            <mu-select label="Para:" filterable v-model="selected.to">
+                <mu-option
+                    v-for="(route,index) in routesTo"
+                    v-bind:key="index"
+                    v-bind:label="route"
+                    v-bind:value="route">
+                </mu-option>
+            </mu-select>
         </div>
-        <button v-on:click="search">Pesquisar</button>
-
-        <datalist id="routesFrom">
-            <option v-for="(route, index) in routesFrom" v-bind:key="index" v-bind:value="route"></option>
-        </datalist>
-
-        <datalist id="routesTo">
-            <option v-for="(route, index) in routesTo" v-bind:key="index" v-bind:value="route"></option>
-        </datalist>
+        <mu-button color="primary" v-on:click="search">Pesquisar</mu-button>
     </div>
 </template>
 
@@ -32,21 +36,22 @@ export default {
         return {
             routesFrom: getStops(),
             routesTo: [],
-            routes: []
+            selected: {
+                from: '',
+                to: ''
+            }
         };
     },
     methods: {
         onFromSelect() {
-            this.$refs.to.value = '';
-            this.routes = [];
-
-            const fromValue = this.$refs.from.value;
-
+            const fromValue = this.selected.from;
+            this.routesTo = [];
+            this.selected.to = '';
             this.routesTo = getAvailableStops(fromValue);
         },
         search() {
-            const fromValue = this.$refs.from.value;
-            const toValue = this.$refs.to.value;
+            const fromValue = this.selected.from;
+            const toValue = this.selected.to;
 
             if (!fromValue || !toValue) {
                 return;
@@ -60,7 +65,3 @@ export default {
     }
 };
 </script>
-
-<style scoped>
-
-</style>
