@@ -1,5 +1,8 @@
 <template>
-    <routes v-bind:routesList="routes"></routes>
+    <div>
+        <h1>Percursos</h1>
+        <routes v-bind:routesList="routes"></routes>
+    </div>
 </template>
 
 <script>

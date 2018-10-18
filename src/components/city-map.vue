@@ -16,6 +16,7 @@ export default {
 
 <style scoped>
 .routes-image {
+    margin-top: 10px;
     max-width: 700px;
 }
 </style>
