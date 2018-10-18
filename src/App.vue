@@ -5,14 +5,16 @@
         </router-link>
         <router-view class="content"></router-view>
         <mu-divider class="bottom-divider"></mu-divider>
-        <mu-bottom-nav class="bottom-navigation">
+        <mu-bottom-nav class="bottom-navigation" v-bind:value="routeSelected">
             <mu-bottom-nav-item
                 title="Planear Viagem"
                 to="/"
+                value="/"
                 icon="directions_bus"></mu-bottom-nav-item>
             <mu-bottom-nav-item
                 title="Mapa"
                 to="/city-map"
+                value="/city-map"
                 icon="location_on"></mu-bottom-nav-item>
         </mu-bottom-nav>
     </div>
@@ -20,7 +22,17 @@
 
 <script>
 export default {
-    name: 'App'
+    name: 'App',
+    data() {
+        return {
+            routeSelected: this.$router.currentRoute.path
+        };
+    },
+    watch: {
+        $route(to) {
+            this.routeSelected = to.path;
+        }
+    }
 };
 </script>
 
