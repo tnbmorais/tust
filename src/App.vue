@@ -1,40 +1,23 @@
 <template>
     <div class="main">
-        <mu-appbar title="Tust" full-width color="primary"></mu-appbar>
-        <search v-on:search="search"></search>
-        <routes v-bind:routesList="routes"></routes>
-        <city-map></city-map>
+        <mu-avatar class="logo" size="126" color="blue" text-color="yellow">TUST</mu-avatar>
+        <router-view/>
     </div>
 </template>
 
 <script>
-import search from './components/search';
-import routes from './components/routes';
-import cityMap from './components/city-map';
-import { getAvailableRoutes } from './services/transport.service';
-
 export default {
-    name: 'App',
-    components: {
-        search,
-        routes,
-        cityMap
-    },
-    data() {
-        return {
-            routes: []
-        };
-    },
-    methods: {
-        search({ fromValue, toValue }) {
-            this.routes = getAvailableRoutes(fromValue, toValue);
-        }
-    }
+    name: 'App'
 };
 </script>
 
 <style>
 .main {
     text-align: center;
+    padding-top: 20px;
+}
+
+.logo {
+    font-size: 40px !important;
 }
 </style>

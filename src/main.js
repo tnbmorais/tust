@@ -5,6 +5,7 @@ import MuseUI from 'muse-ui';
 import 'muse-ui/dist/muse-ui.css';
 import 'material-design-icons/iconfont/material-icons.css';
 import App from './App';
+import router from './router';
 
 Vue.config.productionTip = false;
 
@@ -12,6 +13,7 @@ Vue.use(MuseUI);
 
 /* eslint-disable no-new */
 new Vue({
+    router,
     el: '#app',
     components: { App },
     template: '<App/>'
