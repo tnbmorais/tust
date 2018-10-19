@@ -1,25 +1,21 @@
 <template>
-    <div>
-        <div>
-            <mu-select label="De:" filterable v-model="selected.from" v-on:change="onFromSelect">
-                <mu-option
-                    v-for="(route,index) in routesFrom"
-                    v-bind:key="index"
-                    v-bind:label="route"
-                    v-bind:value="route">
-                </mu-option>
-            </mu-select>
-        </div>
-        <div>
-            <mu-select label="Para:" filterable v-model="selected.to">
-                <mu-option
-                    v-for="(route,index) in routesTo"
-                    v-bind:key="index"
-                    v-bind:label="route"
-                    v-bind:value="route">
-                </mu-option>
-            </mu-select>
-        </div>
+    <div class="search-container">
+        <mu-select label="De:" filterable v-model="selected.from" v-on:change="onFromSelect">
+            <mu-option
+                v-for="(route,index) in routesFrom"
+                v-bind:key="index"
+                v-bind:label="route"
+                v-bind:value="route">
+            </mu-option>
+        </mu-select>
+        <mu-select label="Para:" filterable v-model="selected.to">
+            <mu-option
+                v-for="(route,index) in routesTo"
+                v-bind:key="index"
+                v-bind:label="route"
+                v-bind:value="route">
+            </mu-option>
+        </mu-select>
         <mu-button color="primary" v-on:click="search">Pesquisar</mu-button>
     </div>
 </template>
@@ -65,3 +61,10 @@ export default {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.search-container {
+    padding-bottom: 20px;
+}
+</style>
+
