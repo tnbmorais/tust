@@ -16,8 +16,8 @@
                     icon="directions_bus"></mu-bottom-nav-item>
                 <mu-bottom-nav-item
                     title="Mapa"
-                    to="/city-map"
-                    value="/city-map"
+                    to="/map"
+                    value="/map"
                     icon="location_on"></mu-bottom-nav-item>
             </mu-bottom-nav>
         </footer>

@@ -3,7 +3,7 @@ import Router from 'vue-router';
 
 import homepage from './pages/homepage';
 import routespage from './pages/routespage';
-import cityMap from './components/city-map';
+import mappage from './pages/mappage';
 
 Vue.use(Router);
 
@@ -22,9 +22,9 @@ export default new Router({
             component: routespage
         },
         {
-            path: '/city-map',
-            name: 'cityMap',
-            component: cityMap
+            path: '/map',
+            name: 'map',
+            component: mappage
         }
     ]
 });
