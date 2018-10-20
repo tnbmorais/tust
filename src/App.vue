@@ -5,7 +5,9 @@
                 <mu-avatar class="logo" size="126" color="blue" text-color="yellow">TUST</mu-avatar>
             </router-link>
         </header>
-        <router-view class="content"></router-view>
+        <main class="content">
+            <router-view></router-view>
+        </main>
         <footer class="footer">
             <mu-divider class="bottom-divider"></mu-divider>
             <mu-bottom-nav class="bottom-navigation" v-bind:value="routeSelected">
