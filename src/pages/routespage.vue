@@ -1,6 +1,8 @@
 <template>
     <div>
-        <h1>Percursos</h1>
+        <h1>Viagem</h1>
+        <h4>{{travel.from}} - {{travel.to}}</h4>
+        <h2>Percursos</h2>
         <routes v-bind:routesList="routes"></routes>
     </div>
 </template>
@@ -19,6 +21,10 @@ export default {
         const { fromValue, toValue, date } = getData('userInput');
 
         return {
+            travel: {
+                from: fromValue,
+                to: toValue
+            },
             routes: getAvailableRoutes(fromValue, toValue, date)
         };
     }
