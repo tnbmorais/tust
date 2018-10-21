@@ -24,7 +24,8 @@
             view-type="list"
             icon="today"
             type="dateTime"
-            v-bind:should-disable-date="allowedDates">
+            v-bind:should-disable-date="allowedDates"
+            v-bind:date-time-format="ptDateFormat">
         </mu-date-input>
         <mu-button color="primary" v-on:click="search">Pesquisar</mu-button>
     </div>
@@ -35,6 +36,7 @@ import {
     getStops,
     getAvailableStops
 } from '../services/transport.service';
+import ptDateFormat from '../assets/translations';
 
 export default {
     name: 'search',
@@ -46,7 +48,8 @@ export default {
                 from: '',
                 to: '',
                 date: new Date()
-            }
+            },
+            ptDateFormat
         };
     },
     methods: {
