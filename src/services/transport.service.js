@@ -44,6 +44,10 @@ function getAvailableRoutes(from, to, date) {
             const schedulesList = getSchedulesForRoutes(route.id, direction, date);
             const nextSchedule = getNextSchedule(schedulesList, date);
 
+            if (direction === 'end_to_begin') {
+                route.stops.reverse();
+            }
+
             return {
                 ...route,
                 schedules: schedulesList,
