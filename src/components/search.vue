@@ -82,5 +82,9 @@ export default {
     align-items: center;
     justify-content: center;
 }
+
+.mu-input {
+    margin-bottom: 6px;
+}
 </style>
 
