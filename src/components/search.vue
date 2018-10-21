@@ -23,7 +23,8 @@
             clock-type="24hr"
             view-type="list"
             icon="today"
-            type="dateTime">
+            type="dateTime"
+            v-bind:should-disable-date="allowedDates">
         </mu-date-input>
         <mu-button color="primary" v-on:click="search">Pesquisar</mu-button>
     </div>
@@ -54,6 +55,9 @@ export default {
             this.routesTo = [];
             this.selected.to = '';
             this.routesTo = getAvailableStops(fromValue);
+        },
+        allowedDates(date) {
+            return new Date() >= date;
         },
         search() {
             const fromValue = this.selected.from;
