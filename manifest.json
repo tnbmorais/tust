@@ -1,0 +1,8 @@
+{
+    "name": "Transportes Urbanos de Santo Tirso",
+    "short_name": "tust",
+    "lang": "en-US",
+    "display": "standalone",
+    "orientation": "any",
+    "theme_color": "#FFFFFF"
+  }
