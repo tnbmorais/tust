@@ -22,15 +22,15 @@ function getAvailableStops(from) {
     return Array.from(new Set(stopsList)).sort();
 }
 
-function getSchedulesForRoutes(routeFrom, direction) {
-    const typeOfDay = calculateTypeOfDay();
+function getSchedulesForRoutes(routeFrom, direction, date) {
+    const typeOfDay = calculateTypeOfDay(date);
 
     const scheduleIndex = direction === 'begin_to_end' ? 0 : 1;
 
     return schedules[routeFrom][typeOfDay][scheduleIndex];
 }
 
-function getAvailableRoutes(from, to) {
+function getAvailableRoutes(from, to, date) {
     const routesList = Object.values(routes)
         .filter(route => {
             const routeHasBothDestinations = [from, to].every(stop => route.stops.indexOf(stop) !== -1);
@@ -41,8 +41,8 @@ function getAvailableRoutes(from, to) {
             const fromIndex = route.stops.findIndex(stop => stop === from);
             const toIndex = route.stops.findIndex(stop => stop === to);
             const direction = fromIndex < toIndex ? 'begin_to_end' : 'end_to_begin';
-            const schedulesList = getSchedulesForRoutes(route.id, direction);
-            const nextSchedule = getNextSchedule(schedulesList);
+            const schedulesList = getSchedulesForRoutes(route.id, direction, date);
+            const nextSchedule = getNextSchedule(schedulesList, date);
 
             return {
                 ...route,

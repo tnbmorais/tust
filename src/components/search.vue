@@ -16,6 +16,15 @@
                 v-bind:value="route">
             </mu-option>
         </mu-select>
+        <mu-date-input
+            v-model="selected.date"
+            label="Escolher Data"
+            container="dialog"
+            clock-type="24hr"
+            view-type="list"
+            icon="today"
+            type="dateTime">
+        </mu-date-input>
         <mu-button color="primary" v-on:click="search">Pesquisar</mu-button>
     </div>
 </template>
@@ -34,7 +43,8 @@ export default {
             routesTo: [],
             selected: {
                 from: '',
-                to: ''
+                to: '',
+                date: new Date()
             }
         };
     },
@@ -48,6 +58,7 @@ export default {
         search() {
             const fromValue = this.selected.from;
             const toValue = this.selected.to;
+            const date = this.selected.date;
 
             if (!fromValue || !toValue) {
                 return;
@@ -55,7 +66,8 @@ export default {
 
             this.$emit('search', {
                 fromValue,
-                toValue
+                toValue,
+                date
             });
         }
     }

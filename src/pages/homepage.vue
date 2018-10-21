@@ -7,7 +7,6 @@
 
 <script>
 import search from '../components/search';
-import { getAvailableRoutes } from '../services/transport.service';
 import { setData } from '../services/application-data';
 
 export default {
@@ -16,8 +15,8 @@ export default {
         search
     },
     methods: {
-        search({ fromValue, toValue }) {
-            setData('routes', getAvailableRoutes(fromValue, toValue));
+        search(data) {
+            setData('userInput', data);
             this.$router.push({ path: 'routes' });
         }
     }

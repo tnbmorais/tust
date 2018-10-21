@@ -12,7 +12,7 @@
                 </mu-list-item-action>
                 <mu-list-item-content>
                     <mu-list-item-title>{{route.name}}</mu-list-item-title>
-                    <mu-list-item-sub-title>Próxima Viagem: {{route.nextSchedule}}</mu-list-item-sub-title>
+                    <mu-list-item-sub-title>Hora Viagem: {{route.nextSchedule}}</mu-list-item-sub-title>
                 </mu-list-item-content>
                 <mu-list-item-action>
                     <mu-button icon @click="showStops(route.id)">

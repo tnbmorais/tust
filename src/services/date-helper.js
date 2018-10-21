@@ -4,27 +4,25 @@ const typeOfDaysMap = {
     sunday_and_holidays: [0]
 };
 
-function calculateTypeOfDay() {
-    const today = new Date();
-    const dayOfWeek = today.getDay();
+function calculateTypeOfDay(date) {
+    const dayOfWeek = date.getDay();
 
     return Object.keys(typeOfDaysMap).find(type =>
         typeOfDaysMap[type].indexOf(dayOfWeek) !== -1
     );
 }
 
-function getNextSchedule(schedules) {
-    const todayDate = new Date();
+function getNextSchedule(schedules, date) {
+    const referenceDate = date;
     // To simulate times
-    // todayDate.setHours(17, 0);
+    // referenceDate.setHours(17, 0);
     //
-
     return schedules.find(time => {
         const timeArr = time.split(':');
-        const referenceDate = new Date();
-        referenceDate.setHours(timeArr[0], timeArr[1], 0);
+        const hourDate = new Date(referenceDate);
+        hourDate.setHours(timeArr[0], timeArr[1], 0);
 
-        return todayDate < referenceDate;
+        return referenceDate < hourDate;
     }) || schedules[0];
 }
 

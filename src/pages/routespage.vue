@@ -7,6 +7,7 @@
 
 <script>
 import routes from '../components/routes';
+import { getAvailableRoutes } from '../services/transport.service';
 import { getData } from '../services/application-data';
 
 export default {
@@ -15,8 +16,10 @@ export default {
         routes
     },
     data() {
+        const { fromValue, toValue, date } = getData('userInput');
+
         return {
-            routes: getData('routes')
+            routes: getAvailableRoutes(fromValue, toValue, date)
         };
     }
 };
