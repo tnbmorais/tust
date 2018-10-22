@@ -4,6 +4,7 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 const manifest = require('../manifest.json');
 
 function resolve (dir) {
@@ -92,6 +93,7 @@ module.exports = {
     child_process: 'empty'
   },
   plugins: [
-    new WebpackPwaManifest(manifest)
+    new WebpackPwaManifest(manifest),
+    new WorkboxPlugin.GenerateSW()
   ]
 }

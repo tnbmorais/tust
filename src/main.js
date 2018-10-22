@@ -7,6 +7,13 @@ import 'material-design-icons/iconfont/material-icons.css';
 import App from './App';
 import router from './router';
 
+if ('serviceWorker' in navigator) {
+    // Use the window load event to keep the page load performant
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+    });
+}
+
 Vue.config.productionTip = false;
 
 Vue.use(MuseUI);

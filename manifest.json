@@ -4,5 +4,6 @@
     "lang": "en-US",
     "display": "fullscreen",
     "orientation": "portrait",
-    "theme_color": "#FFFFFF"
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF"
   }
