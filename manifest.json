@@ -2,7 +2,7 @@
     "name": "Transportes Urbanos de Santo Tirso",
     "short_name": "tust",
     "lang": "en-US",
-    "display": "standalone",
+    "display": "fullscreen",
     "orientation": "portrait",
     "theme_color": "#FFFFFF"
   }
