@@ -3,6 +3,6 @@
     "short_name": "tust",
     "lang": "en-US",
     "display": "standalone",
-    "orientation": "any",
+    "orientation": "portrait",
     "theme_color": "#FFFFFF"
   }
