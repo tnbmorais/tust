@@ -19,13 +19,14 @@ export default {
     },
     data() {
         const { fromValue, toValue, date } = getData('userInput');
+        const dateFormat = new Date(date);
 
         return {
             travel: {
                 from: fromValue,
                 to: toValue
             },
-            routes: getAvailableRoutes(fromValue, toValue, date)
+            routes: getAvailableRoutes(fromValue, toValue, dateFormat)
         };
     }
 };
